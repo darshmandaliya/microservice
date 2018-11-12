@@ -47,4 +47,24 @@ public class LoginController {
 		return "welcome";
 	}
 
+	@RequestMapping(value = "/login", params = "version=1", method = RequestMethod.POST)
+	public String validateUserV2(ModelMap modelView, @RequestParam String name, @RequestParam String password) {
+
+		LOGGER.info("Name V2: " + name);
+		LOGGER.info("Password V2: " + password);
+
+		System.out.println("name V2");
+
+		boolean isValidUser = LoginService.valiadteUser(name, password);
+
+		if (!isValidUser) {
+			modelView.addAttribute("errorMessage", "Invalid Credential V2");
+			return "login";
+		}
+
+		modelView.put("name", name);
+		modelView.put("password", password);
+		return "welcome";
+	}
+
 }
