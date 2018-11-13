@@ -28,7 +28,8 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String validateUser(ModelMap modelView, @RequestParam String name, @RequestParam String password) {
+	public String validateUser(ModelMap modelView, @RequestParam String name, @RequestParam String password)
+			throws Exception {
 
 		LOGGER.info("Name : " + name);
 		LOGGER.info("Password : " + password);
@@ -44,7 +45,8 @@ public class LoginController {
 
 		modelView.put("name", name);
 		modelView.put("password", password);
-		return "welcome";
+		// throw new Exception("Custom");
+		return "login";
 	}
 
 	@RequestMapping(value = "/login", params = "version=1", method = RequestMethod.POST)
