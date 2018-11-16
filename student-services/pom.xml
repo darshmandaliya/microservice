@@ -6,11 +6,11 @@
 
 	<groupId>com.restservice.springboot</groupId>
 	<artifactId>student-services</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-
+	<version>0.0.1-SNAPSHOT</version>    
 	<name>student-services</name>
 	<description>Demo project for Spring Boot</description>
+
+    <packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -62,17 +62,31 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<!-- <scope>provided</scope> -->
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
+	   <finalName>student-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+             <configuration>
+                    <!-- <warSourceDirectory>webapp</warSourceDirectory> -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
 
+	
 </project>
