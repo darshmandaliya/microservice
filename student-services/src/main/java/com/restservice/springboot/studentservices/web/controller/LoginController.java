@@ -20,7 +20,7 @@ public class LoginController {
 	private final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
-	LoginService LoginService;
+	LoginService loginService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginPage(ModelAndView modelView) {
@@ -36,7 +36,7 @@ public class LoginController {
 
 		System.out.println("name");
 
-		boolean isValidUser = LoginService.valiadteUser(name, password);
+		boolean isValidUser = loginService.valiadteUser(name, password);
 
 		if (!isValidUser) {
 			modelView.addAttribute("errorMessage", "Invalid Credential");
@@ -46,7 +46,7 @@ public class LoginController {
 		modelView.put("name", name);
 		modelView.put("password", password);
 		// throw new Exception("Custom");
-		return "login";
+		return "welcome";
 	}
 
 	@RequestMapping(value = "/login", params = "version=1", method = RequestMethod.POST)
@@ -57,7 +57,7 @@ public class LoginController {
 
 		System.out.println("name V2");
 
-		boolean isValidUser = LoginService.valiadteUser(name, password);
+		boolean isValidUser = loginService.valiadteUser(name, password);
 
 		if (!isValidUser) {
 			modelView.addAttribute("errorMessage", "Invalid Credential V2");
@@ -66,6 +66,7 @@ public class LoginController {
 
 		modelView.put("name", name);
 		modelView.put("password", password);
+
 		return "welcome";
 	}
 
